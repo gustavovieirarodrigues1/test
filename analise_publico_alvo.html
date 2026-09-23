@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Público-Alvo - Bilacare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-escuro: #0D322A;
+            --dourado-suave: #E1CBA3;
+            --branco: #FFFFFF;
+            --cinza-claro: #f8f9fa;
+            --cinza-texto: #6c757d;
+        }
+        @font-face {
+            font-family: 'Kegger';
+            src: url('https://cdn.jsdelivr.net/gh/fontsee/Kegger-Metric/KEGGERME-trial.woff') format('woff');
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cinza-claro);
+            color: #343a40;
+        }
+        .display-4, h1, h2, h3 {
+            font-family: 'Kegger', 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .bg-verde-escuro {
+            background-color: var(--verde-escuro);
+        }
+        .text-dourado {
+            color: var(--dourado-suave);
+        }
+        .section-title {
+            color: var(--verde-escuro);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--dourado-suave);
+        }
+        .card {
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            border-radius: 8px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            font-weight: bold;
+        }
+        .accordion-button {
+            font-weight: 600;
+        }
+        .accordion-button:not(.collapsed) {
+            color: var(--branco);
+            background-color: var(--verde-escuro);
+        }
+        .accordion-button:focus {
+            box-shadow: 0 0 0 .25rem rgba(225, 203, 163, .5);
+        }
+        .list-group-item {
+            border-left: 4px solid var(--dourado-suave) !important;
+            margin-bottom: 0.5rem;
+        }
+        .persona-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--verde-escuro);
+        }
+        .alert-primary {
+            background-color: #e7f4f1;
+            border-color: #d2e9e4;
+            color: #0D322A;
+        }
+        .header-logo {
+            max-height: 60px; /* Altura máxima para as logos */
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-verde-escuro text-white p-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="Logo BilaCare/Bilacare_FundosEscuros.png" alt="Logo Bilacare" class="header-logo">
+                <div class="text-center flex-grow-1">
+                    <h1 class="display-4 mb-0"><i class="fas fa-users me-3"></i>Análise de Público-Alvo</h1>
+                    <p class="lead text-dourado mb-0">O Coração do Nosso Cliente: Análise Aprofundada do Público-Alvo da Bilacare</p>
+                </div>
+                <img src="Logo Hendrios/Aplicar fundo preto.png" alt="Logo Hendrios Ace" class="header-logo">
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section id="perfil-geral" class="mb-5 text-center">
+             <h2 class="section-title">Perfil Geral do Público</h2>
+             <div class="row">
+                 <div class="col-lg-4 mb-4">
+                     <div class="card h-100">
+                         <div class="card-header"><i class="fas fa-id-card me-2"></i> Perfil Demográfico</div>
+                         <div class="card-body">
+                             <ul class="list-group list-group-flush">
+                                 <li class="list-group-item"><strong>Idade:</strong> 25-54 anos (foco 35-44)</li>
+                                 <li class="list-group-item"><strong>Gênero:</strong> 70% Feminino / 30% Masculino</li>
+                                 <li class="list-group-item"><strong>Localização:</strong> Vila Real e raio de 1h</li>
+                                 <li class="list-group-item"><strong>Renda Média:</strong> 1500€ - 3.000€</li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 mb-4">
+                     <div class="card h-100">
+                         <div class="card-header"><i class="fas fa-brain me-2"></i> Perfil Psicográfico</div>
+                         <div class="card-body">
+                              <ul class="list-group list-group-flush">
+                                 <li class="list-group-item">Valorizam o <strong>autocuidado</strong> e a aparência</li>
+                                 <li class="list-group-item">Buscam <strong>rejuvenescer</strong> e elevar a autoestima</li>
+                                 <li class="list-group-item">Frequentam espaços de <strong>bem-estar</strong></li>
+                                 <li class="list-group-item">Dividem-se entre <strong>prevenir</strong> e <strong>corrigir</strong></li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 mb-4">
+                     <div class="card h-100">
+                         <div class="card-header"><i class="fas fa-hand-holding-medical me-2"></i> Dores a Solucionar</div>
+                         <div class="card-body">
+                              <ul class="list-group list-group-flush">
+                                 <li class="list-group-item">A "dor" é a <strong>perda de confiança</strong>, não a ruga</li>
+                                 <li class="list-group-item">Buscam a sensação de <strong>rejuvenescimento</strong></li>
+                                 <li class="list-group-item">Desejam <strong>harmonia</strong> e resultados naturais</li>
+                                 <li class="list-group-item">Querem voltar a gostar do que <strong>vêem no espelho</strong></li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+ 
+         <section id="personas" class="text-center">
+             <h2 class="section-title">Personas Detalhadas</h2>
+             <div class="accordion" id="personasAccordion">
+                 
+                 <div class="accordion-item mb-3">
+                     <h2 class="accordion-header" id="headingOne">
+                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                             <i class="fas fa-tooth persona-icon"></i> Carlos, o Reformado Ativo (Implantologia)
+                         </button>
+                     </h2>
+                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 68 anos, engenheiro civil reformado. Gosta de conviver, viajar e desfrutar de boa comida.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li><strong>Funcional:</strong> Dificuldade em mastigar certos alimentos devido à perda de dentes e desconforto com a prótese removível.</li>
+                                 <li><strong>Emocional:</strong> Vergonha do seu sorriso em fotos de família, evitando sorrir abertamente.</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Voltar a comer de tudo com confiança.</li>
+                                 <li>Recuperar um sorriso natural para se sentir mais jovem.</li>
+                                 <li>Encontrar uma solução fixa e definitiva.</li>
+                             </ul>
+                             <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Com implantologia avançada de carga imediata, Carlos pode ter dentes fixos num só dia, recuperando a função e a estética do sorriso de forma definitiva.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="accordion-item mb-3">
+                     <h2 class="accordion-header" id="headingTwo">
+                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                             <i class="fas fa-user-tie persona-icon"></i> Sofia, a Profissional Ambiciosa (Ortodontia Adulto)
+                         </button>
+                     </h2>
+                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 34 anos, advogada, com uma imagem profissional crucial para a sua carreira.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li><strong>Funcional:</strong> Dentes apinhados que dificultam a higiene.</li>
+                                 <li><strong>Emocional:</strong> Insegurança com o sorriso, o que afeta a sua confiança em reuniões e eventos. Teme usar um aparelho metálico.</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Alcançar um sorriso perfeitamente alinhado.</li>
+                                 <li>Aumentar a autoconfiança pessoal e profissional.</li>
+                                 <li>Procura um tratamento discreto e eficaz.</li>
+                             </ul>
+                              <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Com ortodontia invisível (alinhadores), Sofia pode corrigir o sorriso de forma discreta e flexível, sem comprometer a sua imagem profissional.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="accordion-item mb-3">
+                     <h2 class="accordion-header" id="headingThree">
+                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                             <i class="fas fa-users-cog persona-icon"></i> Miguel e Ana, os Pais Preocupados (Ortodontia Adolescente)
+                         </button>
+                     </h2>
+                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 45-50 anos, pais de um adolescente de 14 anos, focados em dar-lhe os melhores cuidados.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li><strong>Funcional (do filho):</strong> Alertas do dentista sobre futuros problemas de mastigação.</li>
+                                 <li><strong>Emocional (dos pais):</strong> Preocupação com a autoestima do filho e com o custo do tratamento.</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Garantir a saúde oral a longo prazo do filho.</li>
+                                 <li>Melhorar a confiança do filho numa fase crucial.</li>
+                                 <li>Encontrar uma clínica de confiança com pagamento flexível.</li>
+                             </ul>
+                              <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Com um plano ortodôntico completo para adolescentes, equipa experiente e planos de pagamento flexíveis, os pais sentem-se seguros para investir no futuro sorriso do filho.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="accordion-item mb-3">
+                     <h2 class="accordion-header" id="headingFour">
+                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                             <i class="fas fa-baby persona-icon"></i> Inês, a Mãe de Primeira Viagem (Odontopediatria)
+                         </button>
+                     </h2>
+                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 31 anos, mãe de uma bebé de 1 ano, muito focada no seu desenvolvimento saudável.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li><strong>Funcional:</strong> Desconhecimento sobre os cuidados orais corretos para um bebé.</li>
+                                 <li><strong>Emocional:</strong> Ansiedade e medo que a primeira visita ao dentista seja traumática para a filha.</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Aprender as melhores práticas de higiene oral.</li>
+                                 <li>Garantir que a filha cresça sem medo do dentista.</li>
+                                 <li>Estabelecer uma rotina de prevenção desde o início.</li>
+                             </ul>
+                              <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Com um serviço de Odontopediatria especializado e um ambiente acolhedor, a Inês recebe o aconselhamento que precisa e a sua filha tem uma primeira experiência positiva, resolvendo a sua ansiedade.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="accordion-item mb-3">
+                     <h2 class="accordion-header" id="headingFive">
+                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                             <i class="fas fa-briefcase persona-icon"></i> Francisco, o Empresário Exigente (Reabilitação Oral)
+                         </button>
+                     </h2>
+                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 55 anos, empresário de sucesso, com tempo limitado e que valoriza a máxima qualidade e eficiência.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li><strong>Funcional:</strong> Múltiplos problemas acumulados (dentes partidos, ausências, dores de cabeça).</li>
+                                 <li><strong>Emocional:</strong> Sente que o seu sorriso não corresponde à sua posição de sucesso e está frustrado por ter adiado o tratamento.</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Realizar uma transformação completa do sorriso de uma só vez.</li>
+                                 <li>Procura uma clínica de topo com tecnologia de ponta.</li>
+                                 <li>Quer um plano de tratamento claro, eficiente e com resultados de excelência.</li>
+                             </ul>
+                             <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Com um serviço de Reabilitação Oral Total e planeamento digital (Digital Smile Design), o Francisco pode visualizar o resultado final, recebendo um tratamento integrado e de alta qualidade que corresponde às suas elevadas expectativas.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="accordion-item mb-3">
+                     <h2 class="accordion-header" id="headingSix">
+                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                             <i class="fas fa-user-tie persona-icon"></i> "A Profissional de Sucesso" (Estética Facial)
+                         </button>
+                     </h2>
+                     <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 35-45 anos. Mulher com carreira estabelecida, valoriza a sua imagem como parte do seu sucesso. Procura tratamentos que a mantenham com uma aparência fresca e cuidada, mas tem pavor de resultados artificiais.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li>"Sinto que o meu rosto parece cansado."</li>
+                                 <li>"Não tenho tempo a perder com recuperações longas."</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Manter a competitividade, sentir-se confiante em reuniões, investir em si mesma.</li>
+                             </ul>
+                             <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Com tratamentos de harmonização facial minimamente invasivos, como bioestimuladores de colagénio e preenchedores, consegue resultados naturais e uma aparência rejuvenescida, com tempo de recuperação mínimo.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="accordion-item mb-3">
+                     <h2 class="accordion-header" id="headingSeven">
+                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                             <i class="fas fa-person-dress persona-icon"></i> "A Mãe que se Reinventa" (Rejuvenescimento)
+                         </button>
+                     </h2>
+                     <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 45-55 anos. Mulher que, após anos a cuidar da família, procura um momento para si. Pode estar a passar por um "ninho vazio" ou divórcio e quer reencontrar a sua autoconfiança.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li>"Olho-me ao espelho e não me reconheço."</li>
+                                 <li>"Gostaria de fazer algo por mim, mas tenho medo."</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Elevar a autoestima, começar um novo capítulo, sentir-se bonita e desejada novamente.</li>
+                             </ul>
+                             <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Através de uma abordagem de rejuvenescimento integral e um plano personalizado que respeita os seus receios, encontra um caminho seguro e acolhedor para redescobrir a sua melhor versão.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <div class="accordion-item">
+                     <h2 class="accordion-header" id="headingEight">
+                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                             <i class="fas fa-gift persona-icon"></i> "O Filho Adulto" (Presente de Cuidado)
+                         </button>
+                     </h2>
+                     <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#personasAccordion">
+                         <div class="accordion-body text-start">
+                             <p><strong>Perfil:</strong> 30-45 anos. Homem ou mulher, financeiramente estável, que deseja presentear os pais com um tratamento de alto valor, como implantes dentários, para melhorar a sua qualidade de vida.</p>
+                             <h5>Dores e Frustrações:</h5>
+                             <ul>
+                                 <li>"Vejo a dificuldade dos meus pais a comer."</li>
+                                 <li>"Queria dar-lhes um presente que realmente fizesse a diferença."</li>
+                             </ul>
+                             <h5>Objetivos e Motivações:</h5>
+                             <ul>
+                                 <li>Gratidão, amor, preocupação com o bem-estar dos pais.</li>
+                             </ul>
+                             <div class="alert alert-primary mt-3">
+                                 <strong>Como a Bilacare Ajuda:</strong> Oferece a oportunidade de presentear os pais com saúde e qualidade de vida através de soluções como a implantologia, sabendo que estão numa clínica de confiança.
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+ 
+             </div>
+         </section>
+    </main>
+
+    <footer class="bg-verde-escuro text-white text-center p-3 mt-5">
+        <p class="mb-0">&copy; 2025 - Relatório para Bilacare | Planejamento Estratégico por Hendrios Ace.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

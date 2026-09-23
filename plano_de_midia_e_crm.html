@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Mídia e CRM - Bilacare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-escuro: #0D322A;
+            --dourado-suave: #E1CBA3;
+            --branco: #FFFFFF;
+            --cinza-claro: #f8f9fa;
+            --cinza-texto: #6c757d;
+            --vermelho-swot: #dc3545;
+            --verde-swot: #28a745;
+            --azul-swot: #007bff;
+            --amarelo-swot: #ffc107;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cinza-claro);
+            color: #343a40;
+        }
+        @font-face {
+            font-family: 'Kegger';
+            src: url('https://cdn.jsdelivr.net/gh/fontsee/Kegger-Metric/KEGGERME-trial.woff') format('woff');
+        }
+        .display-4, h1, h2, h3, h5 {
+            font-family: 'Kegger', 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .bg-verde-escuro {
+            background-color: var(--verde-escuro);
+        }
+        .text-dourado {
+            color: var(--dourado-suave);
+        }
+        .nav-tabs .nav-link {
+            color: var(--verde-escuro);
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+        }
+        .nav-tabs .nav-link.active {
+            color: var(--verde-escuro);
+            border-color: var(--dourado-suave);
+            background-color: var(--branco);
+        }
+        .accordion-button {
+            font-weight: 600;
+        }
+        .accordion-button:not(.collapsed) {
+            color: var(--branco);
+            background-color: #1a4c3f;
+        }
+        .card {
+            border: 1px solid #e9ecef;
+            border-left: 5px solid var(--verde-escuro);
+            transition: transform 0.2s;
+            border-radius: 8px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: var(--cinza-claro);
+            font-weight: 600;
+        }
+        .list-group-item {
+            border-left: 3px solid var(--dourado-suave) !important;
+        }
+        .keyword-group h5 {
+            color: var(--verde-escuro);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--dourado-suave);
+        }
+        .swot-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            background-color: var(--branco); /* Fundo branco para as cards SWOT */
+        }
+        .swot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        .swot-card .card-header {
+            background-color: transparent; /* Remover fundo do header */
+            border-bottom: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding-bottom: 0;
+        }
+        .swot-card .card-body {
+            padding-top: 0.5rem;
+        }
+        .swot-card.strengths .card-header { color: var(--verde-swot); }
+        .swot-card.weaknesses .card-header { color: var(--vermelho-swot); }
+        .swot-card.opportunities .card-header { color: var(--azul-swot); }
+        .swot-card.threats .card-header { color: var(--amarelo-swot); }
+
+        .swot-card .card-header i {
+            margin-right: 0.5rem;
+        }
+        .swot-card.strengths .card-header i { color: var(--verde-swot); }
+        .swot-card.weaknesses .card-header i { color: var(--vermelho-swot); }
+        .swot-card.opportunities .card-header i { color: var(--azul-swot); }
+        .swot-card.threats .card-header i { color: var(--amarelo-swot); }
+
+        .header-logo {
+            max-height: 60px; /* Ajuste o tamanho conforme necessário */
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-verde-escuro text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <img src="Logo BilaCare/Bilacare_FundosEscuros.png" alt="Logo BilaCare" class="header-logo">
+            <h1 class="display-4 mb-0 flex-grow-1 text-center"><i class="fas fa-bullhorn me-3"></i>Plano de Ação: Mídia e CRM</h1>
+            <img src="Logo Hendrios/Aplicar fundo preto.png" alt="Logo Hendrios Ace" class="header-logo">
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <ul class="nav nav-tabs justify-content-center mb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="evergreen-tab" data-bs-toggle="tab" data-bs-target="#evergreen" type="button" role="tab" aria-controls="evergreen" aria-selected="true"><i class="fas fa-leaf me-2"></i>Campanhas Evergreen</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="seasonal-tab" data-bs-toggle="tab" data-bs-target="#seasonal" type="button" role="tab" aria-controls="seasonal" aria-selected="false"><i class="fas fa-calendar-alt me-2"></i>Campanhas Sazonais</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="keywords-tab" data-bs-toggle="tab" data-bs-target="#keywords" type="button" role="tab" aria-controls="keywords" aria-selected="false"><i class="fas fa-key me-2"></i>Palavras-Chave (Google Ads)</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="crm-tab" data-bs-toggle="tab" data-bs-target="#crm" type="button" role="tab" aria-controls="crm" aria-selected="false"><i class="fas fa-users me-2"></i>Ações de CRM</button>
+            </li>
+        </ul>
+
+<div class="tab-content" id="myTabContent">
+
+    <div class="tab-pane fade show active" id="evergreen" role="tabpanel" aria-labelledby="evergreen-tab">
+        <h3 class="text-center my-4" style="color: var(--verde-escuro);">Narrativas de Vídeo por Etapa do Funil</h3>
+        <div class="accordion" id="funnelAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTop">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTop" aria-expanded="true" aria-controls="collapseTop">
+                        Topo do Funil (Descoberta e Educação)
+                    </button>
+                </h2>
+                <div id="collapseTop" class="accordion-collapse collapse show" aria-labelledby="headingTop" data-bs-parent="#funnelAccordion">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Narrativa "O Medo do Botox":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Saiba Mais</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Dra. Beatriz (ou outro especialista) sorri para a câmara. Cenas rápidas de expressões faciais naturais.</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Medo de perder a expressão?" / "Botox não é uma máscara." / "É sobre suavizar o tempo, não apagá-lo."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "O maior mito sobre o Botox é ficar sem expressão. Na Bilacare, a nossa filosofia é a naturalidade. Descubra como podemos rejuvenescer a sua pele, mantendo o seu sorriso único. Saiba mais."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "O Sorriso que Transforma":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Conhecer Soluções</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Cenas de pessoas em momentos de confiança (uma reunião, um jantar, a tirar uma selfie). Close-ups de sorrisos bonitos mas não perfeitos.</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "O seu sorriso é a sua assinatura." / "Alinhado. Completo. Radiante." / "Como está o seu?"</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Um sorriso confiante abre portas. Seja através de um alinhamento com ortodontia ou da recuperação de um dente perdido com implantes, a sua confiança é a nossa prioridade. Conheça as soluções."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "Presente para os Pais (Filhos a Contratar)":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Oferecer um tratamento</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Filhos adultos a interagir carinhosamente com os pais (um abraço, a ver fotos antigas).</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Eles cuidaram sempre de si." / "Agora, cuide do sorriso e da confiança deles."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Os seus pais merecem o melhor. Ofereça-lhes o cuidado que talvez nunca tenham tido tempo para si próprios. Um tratamento na Bilacare é mais que um presente, é um gesto de amor e bem-estar. Surpreenda-os."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "A Ciência por Trás da Pele":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Descobrir Bioestimuladores</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Animação gráfica simples mostrando as camadas da pele e como o colagénio diminui com o tempo. Imagens de bioestimuladores a serem preparados (sem agulhas).</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "A sua pele fala sobre si." / "Com o tempo, ela perde colagénio." / "Nós ajudamos a recuperá-lo."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Não se trata de magia, trata-se de ciência. Os bioestimuladores de colagénio acordam a sua pele por dentro, devolvendo-lhe a firmeza e o brilho de forma natural. Quer saber como?"</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMiddle">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMiddle" aria-expanded="false" aria-controls="collapseMiddle">
+                        Meio do Funil (Consideração e Confiança)
+                    </button>
+                </h2>
+                <div id="collapseMiddle" class="accordion-collapse collapse" aria-labelledby="headingMiddle" data-bs-parent="#funnelAccordion">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Narrativa "A Experiência Bilacare":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Conhecer a Clínica</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Tour pela clínica. A receção acolhedora, o café, a sala de tratamento impecável, a tecnologia. Foco nos detalhes que criam a experiência premium.</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Não é apenas uma consulta." / "É um momento para si." / "Conforto. Confiança. Cuidado."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Desde o momento em que entra, a sua experiência é a nossa prioridade. Criámos um espaço onde a excelência médica encontra o conforto e a exclusividade. Veja o que nos torna diferentes."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "Antes e Depois com História":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Agendar Avaliação</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Paciente real (com autorização) a falar brevemente sobre a sua insegurança (ex: "não gostava das minhas rugas na testa"). Imagens do "antes" e "depois" (resultado natural). Paciente a sorrir no final.</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "A Ana sentia que o seu olhar parecia sempre cansado. Com um plano personalizado, devolvemos a frescura ao seu rosto, de forma natural. O resultado não é apenas o que se vê, é o que se sente. Agende a sua avaliação."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "Plano de Tratamento para os Pais (Filhos a Contratar)":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Falar com um Especialista</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Um filho adulto a conversar com um especialista da Bilacare. Imagens dos pais a sorrir.</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Um plano de cuidado completo para eles." / "Desde a consulta de avaliação ao resultado final."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Quer oferecer um tratamento aos seus pais mas não sabe por onde começar? Marque uma conversa connosco. Juntos, criamos um plano de tratamento surpresa, focado nas necessidades deles. Fale connosco sem compromisso."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "Especialistas em Foco":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Conhecer a Equipa</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Entrevista curta com um dos médicos (que não a Dra. Beatriz). "A minha paixão na ortodontia é ver a transformação da confiança de um adolescente." ou "Em implantologia, o mais gratificante é devolver a função e a alegria de comer."</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Paixão." / "Experiência." / "Confiança." / "Conheça a nossa equipa."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "A Bilacare é feita de especialistas dedicados. Conheça os médicos que se dedicam diariamente a criar os melhores resultados para si."</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingBottom">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBottom" aria-expanded="false" aria-controls="collapseBottom">
+                        Fundo do Funil (Conversão e Remarketing)
+                    </button>
+                </h2>
+                <div id="collapseBottom" class="accordion-collapse collapse" aria-labelledby="headingBottom" data-bs-parent="#funnelAccordion">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                           <li class="list-group-item">
+                                <strong>Narrativa "Ainda com dúvidas? Fale connosco.":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Agendar Avaliação</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Imagens de pessoas com ar pensativo, a pesquisar no telemóvel. Depois, uma cena na clínica, a conversar com um especialista.</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Visitou a nossa página de [Nome do Serviço]?" / "Sabemos que é uma decisão importante." / "Estamos aqui para esclarecer tudo."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Vimos que pesquisou sobre [Harmonização Facial]. Uma conversa de 15 minutos pode esclarecer todas as suas dúvidas, sem compromisso. Marque a sua consulta de avaliação (o valor é dedutível)."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "O seu primeiro passo para a mudança.":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Vagas Disponíveis</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Close-up do botão "Agendar Avaliação" a ser clicado. Cena rápida de um calendário a ser marcado. E uma cena de resultado final (sorriso ou lábios).</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "A transformação começa com uma decisão." / "A sua está à distância de um clique."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Está na altura de dar o próximo passo. A nossa agenda tem vagas limitadas para novas avaliações este mês. Garanta o seu lugar."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "Um presente para si.":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Agendar uma avaliação</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> Mãos a desembrulhar um voucher elegante da Bilacare e nele está escrito Autoestima.</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Muito mais do que um procedimento"</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Ofereça a si mesmo a oportunidade de se sentir confiante e gostar do que vê ao espelho."</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Narrativa "Resultados que falam por si.":</strong>
+                                <span class="badge float-end" style="background-color: var(--verde-escuro);">CTA: Ver mais Casos de Sucesso</span>
+                                <div class="mt-2 text-muted" style="font-size: 0.9em;">
+                                    <p class="mb-1"><strong>Vídeo:</strong> 3 a 4 casos de sucesso (antes/depois) do serviço específico que o utilizador visitou, intercalados com frases.</p>
+                                    <p class="mb-1"><strong>Texto na Tela:</strong> "Resultados reais." / "Pacientes felizes." / "A próxima história de sucesso pode ser a sua."</p>
+                                    <p class="mb-0"><strong>Voz Off/Legenda:</strong> "Estes são alguns dos resultados que alcançámos para pacientes que, como você, procuravam uma solução para [dor específica]. Confie na nossa experiência. Agende a sua avaliação."</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="tab-pane fade" id="seasonal" role="tabpanel" aria-labelledby="seasonal-tab">
+                <h3 class="text-center my-4" style="color: var(--verde-escuro);">Calendário de Campanhas Sazonais</h3>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header"><i class="fas fa-sun me-2"></i>Julho/Agosto - Verão e Férias</div>
+                            <div class="card-body">
+                                <p><strong>Pele de Verão:</strong> Foco em tratamentos de qualidade de pele (Skinboosters, microagulhamento) para um "glow" de verão. <small class="d-block text-muted">Marketing: "Prepare a sua pele para o verão. Hidratação profunda para um brilho natural." Comercial: Pack "Summer Glow" com desconto progressivo.</small></p>
+                                <p><strong>Sorriso de Férias:</strong> Foco em branqueamento dentário. <small class="d-block text-muted">Marketing: "Leve o seu sorriso mais branco nas férias. Resultados numa só sessão." Comercial: Oferta de um kit de manutenção na realização do branqueamento em clínica.</small></p>
+                                <p><strong>Confiança para o Reencontro:</strong> Foco em Botox e Preenchimentos. <small class="d-block text-muted">Marketing: "Reencontre amigos e família com a sua melhor versão." Comercial: Pequena oferta de um produto de skincare na realização de um tratamento.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header"><i class="fas fa-briefcase me-2"></i>Setembro - Regresso ao Trabalho</div>
+                            <div class="card-body">
+                                <p><strong>Recomeço em Confiança:</strong> Foco em Ortodontia (para jovens e adultos). <small class="d-block text-muted">Marketing: "O novo ano começa com um novo sorriso. Inicie o seu plano ortodôntico." Comercial: Oferta da consulta de avaliação e estudo ortodôntico.</small></p>
+                                <p><strong>Recuperar do Verão:</strong> Foco em peelings e tratamentos de manchas. <small class="d-block text-muted">Marketing: "O sol deixou marcas? Está na altura de renovar a sua pele." Comercial: Desconto na 2ª sessão de peeling.</small></p>
+                                <p><strong>Investir em Si:</strong> Foco em planos de tratamento mais completos (Reabilitação com Implantes/Harmonização completa). <small class="d-block text-muted">Marketing: "Setembro é o mês de novos projetos. Qual é o seu projeto de autoestima?" Comercial: Condições de pagamento especiais para planos iniciados em setembro.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header"><i class="fas fa-leaf me-2"></i>Outubro - Outono</div>
+                            <div class="card-body">
+                                <p><strong>O seu olhar merece destaque:</strong> Foco em tratamento de olheiras e arqueamento de sobrancelha com Botox. <small class="d-block text-muted">Marketing: "Com os dias a ficarem mais curtos, ilumine o seu olhar." Comercial: Pack "Olhar Luminoso" (olheiras + botox) com preço especial.</small></p>
+                                <p><strong>Prepare a sua pele para o frio:</strong> Foco em Bioestimuladores de colagénio. <small class="d-block text-muted">Marketing: "O frio e o vento estão a chegar. Fortaleça a sua pele connosco e não a deixe ressecar." Comercial: Oferta de uma consulta de avaliação de pele.</small></p>
+                                <p><strong>Mês do Sorriso Saudável:</strong> Foco em consultas de rotina e destartarização. <small class="d-block text-muted">Marketing: "A prevenção é o melhor tratamento." Comercial: Preço especial na destartarização.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header"><i class="fas fa-gift me-2"></i>Novembro/Dezembro - Black Friday e Natal</div>
+                            <div class="card-body">
+                                <p><strong>Black Friday Premium:</strong> Em vez de descontos agressivos, oferecer valor acrescentado. <small class="d-block text-muted">Marketing: "Na Bilacare, a sua beleza não tem desconto, tem valor. Oferecemos mais." Comercial: Na compra de um tratamento de HOF, oferta de um peeling. Na consulta de implantes, oferta do Raio-X.</small></p>
+                                <p><strong>O Presente da Confiança:</strong> Foco em Vouchers de Oferta. <small class="d-block text-muted">Marketing: "Este Natal, ofereça algo que dura para sempre: a autoestima." Criativos com embalagens de presente elegantes. Comercial: Na compra de um voucher superior a X€, oferta de um mini-produto de skincare.</small></p>
+                                <p><strong>Brilhe nas Festas:</strong> Foco em tratamentos com efeito rápido (Preenchimento Labial, Botox, Branqueamento). <small class="d-block text-muted">Marketing: "Esteja no seu melhor para as festas de fim de ano." Comercial: Agendamentos feitos até dia X garantem uma pequena surpresa.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col">
+                        <div class="card h-100">
+                            <div class="card-header"><i class="fas fa-star me-2"></i>Janeiro - Ano Novo, Vida Nova</div>
+                            <div class="card-body">
+                                <p><strong>Resoluções de Ano Novo:</strong> Foco em planos de tratamento a longo prazo (Ortodontia, Implantes). <small class="d-block text-muted">Marketing: "Resolução para 2026: o sorriso que sempre sonhou. Comece hoje." Comercial: Condições de pagamento faseadas e sem juros.</small></p>
+                                <p><strong>Detox Facial:</strong> Foco em tratamentos de limpeza e qualidade de pele. <small class="d-block text-muted">Marketing: "Depois dos excessos das festas, a sua pele também precisa de um detox." Comercial: Pack "Limpeza + Hidratação" com preço especial.</small></p>
+                                <p><strong>Comece o Ano a Cuidar de Si:</strong> Foco geral, apelo ao autocuidado. <small class="d-block text-muted">Marketing: "Que a sua primeira prioridade este ano seja você." Comercial: Oferta da consulta de avaliação para qualquer tratamento.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="keywords" role="tabpanel" aria-labelledby="keywords-tab">
+                <h3 class="text-center my-4" style="color: var(--verde-escuro);">Grupos de Anúncios e Palavras-Chave</h3>
+                <div class="row">
+                    <div class="col-md-4 keyword-group">
+                        <h5><i class="fas fa-user-md me-2"></i>Harmonização Facial</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>clínica harmonização facial vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>preço botox vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>preenchimento labial vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>melhor clínica estética vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>tratamento rugas vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>bioestimulador colagénio preço</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 keyword-group">
+                        <h5><i class="fas fa-tooth me-2"></i>Ortodontia</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>aparelho dentário preço vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>ortodontia vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>aparelho invisível vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>clínica ortodontia chaves</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>dentista para aparelho lamego</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 keyword-group">
+                        <h5><i class="fas fa-bone me-2"></i>Implantes Dentários</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>implantes dentários vila real preço</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>clínica de implantes vila real</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>reabilitação oral com implantes</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>preço implante um dente</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>especialista em implantes bragança</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="crm" role="tabpanel" aria-labelledby="crm-tab">
+                <h3 class="text-center my-4" style="color: var(--verde-escuro);">Estratégias de Fidelização e Reativação</h3>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-bell me-2" style="color: var(--verde-escuro);"></i>Lembrete de Manutenção (Botox)</h5>
+                            <small>4 meses após tratamento</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome], tudo bem? Já passaram 4 meses desde a sua última aplicação de Botox. Para manter os resultados que tanto gostou, esta é a altura ideal para agendar a sua próxima sessão. Temos uma vaga para si no dia X ou Y. Qual prefere?"</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-smile me-2" style="color: var(--verde-escuro);"></i>Como está o seu Sorriso?</h5>
+                            <small>6 meses após rotina</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome], da Bilacare! Já passaram 6 meses desde a sua última visita de rotina. A prevenção é a chave para um sorriso saudável! Gostaria de agendar a sua destartarização? Temos horários disponíveis na próxima semana."</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-heart me-2" style="color: var(--verde-escuro);"></i>Sentimos a sua falta</h5>
+                            <small>Inativos (>1 ano)</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome], esperamos que esteja tudo bem! Na Bilacare sentimos a sua falta. Como um cliente especial para nós, gostaríamos de lhe oferecer a consulta de avaliação para qualquer tratamento que queira realizar. Quando gostaria de nos visitar?"</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-star me-2" style="color: var(--verde-escuro);"></i>Novidade na Clínica</h5>
+                            <small>Lançamentos</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome]! Temos uma novidade na Bilacare que achamos que vai adorar: [Nome do Tratamento Novo]. É perfeito para [benefício principal]. Como nosso cliente, tem acesso prioritário para saber mais. Quer que lhe envie o link com os detalhes?"</p>
+                    </a>
+                     <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-birthday-cake me-2" style="color: var(--verde-escuro);"></i>Feliz Aniversário!</h5>
+                            <small>Aniversário do cliente</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome]! Toda a equipa da Bilacare deseja-lhe um feliz e sorridente aniversário! Para celebrar consigo, temos um presente especial: 10% de desconto no seu próximo tratamento. Válido durante o seu mês de aniversário. Parabéns!"</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-poll-h me-2" style="color: var(--verde-escuro);"></i>Pesquisa de Satisfação</h5>
+                            <small>1 semana pós-tratamento</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome], esperamos que a sua recuperação esteja a correr bem! A sua opinião é muito importante para nós. Poderia dedicar 1 minuto a dizer-nos como foi a sua experiência? O seu feedback ajuda-nos a ser ainda melhores." (Link para um formulário simples).</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-user-friends me-2" style="color: var(--verde-escuro);"></i>Indique um Amigo(a)</h5>
+                            <small>Clientes fidelizados</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome]! Ficamos muito felizes por ser nosso cliente. Sabia que a sua confiança pode valer um presente? Por cada amigo(a) que nos visitar por sua indicação, ambos recebem um desconto de 20€ no próximo tratamento. Partilhe a confiança!"</p>
+                    </a>
+                     <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-file-invoice-dollar me-2" style="color: var(--verde-escuro);"></i>Acompanhamento de Orçamento</h5>
+                            <small>1 semana após avaliação</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome], tudo bem? Após a sua consulta de avaliação, ficou com alguma dúvida sobre o plano de tratamento que conversámos? Lembre-se que temos opções de pagamento facilitado. Estou aqui para ajudar a esclarecer."</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-clock me-2" style="color: var(--verde-escuro);"></i>Vagas de Última Hora</h5>
+                            <small>Quando surge uma vaga inesperada</small>
+                        </div>
+                        <p class="mb-1">"Olá! Tivemos uma desistência e abriu uma vaga para [Tratamento] amanhã às [hora]. Sabemos que tinha interesse. A vaga é sua se quiser! Posso agendar?"</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><i class="fas fa-newspaper me-2" style="color: var(--verde-escuro);"></i>Conteúdo Exclusivo para Clientes</h5>
+                            <small>Mensalmente</small>
+                        </div>
+                        <p class="mb-1">"Olá [Nome], como nosso cliente, tem acesso em primeira mão ao nosso novo artigo sobre [Tema, ex: 'Como prolongar os efeitos do preenchimento labial']. Dicas valiosas para si! Pode ler aqui: [Link]."</p>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <footer class="bg-verde-escuro text-white text-center p-3 mt-5">
+        <p class="mb-0">&copy; 2025 - Relatório para Bilacare | Planejamento Estratégico por Hendrios Ace.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

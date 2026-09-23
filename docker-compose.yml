@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  bilacare-web:
+    build: .
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

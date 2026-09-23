@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Competitiva - Bilacare</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <style>
+        :root {
+            --verde-escuro: #0D322A;
+            --dourado-suave: #E1CBA3;
+            --branco: #FFFFFF;
+            --cinza-claro: #f8f9fa;
+            --cinza-texto: #6c757d;
+            --vermelho-swot: #dc3545;
+            --verde-swot: #28a745;
+            --azul-swot: #007bff;
+            --amarelo-swot: #ffc107;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cinza-claro);
+            color: #343a40;
+        }
+        @font-face {
+            font-family: 'Kegger';
+            src: url('https://cdn.jsdelivr.net/gh/fontsee/Kegger-Metric/KEGGERME-trial.woff') format('woff');
+        }
+        .display-4, h1, h2, h3, h5 {
+            font-family: 'Kegger', 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .bg-verde-escuro {
+            background-color: var(--verde-escuro);
+        }
+        .text-dourado {
+            color: var(--dourado-suave);
+        }
+        .nav-tabs .nav-link {
+            color: var(--verde-escuro);
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+        }
+        .nav-tabs .nav-link.active {
+            color: var(--verde-escuro);
+            border-color: var(--dourado-suave);
+            background-color: var(--branco);
+        }
+        .accordion-button {
+            font-weight: 600;
+        }
+        .accordion-button:not(.collapsed) {
+            color: var(--branco);
+            background-color: #1a4c3f;
+        }
+        .card {
+            border: 1px solid #e9ecef;
+            border-left: 5px solid var(--verde-escuro);
+            transition: transform 0.2s;
+            border-radius: 8px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: var(--cinza-claro);
+            font-weight: 600;
+        }
+        .list-group-item {
+            border-left: 3px solid var(--dourado-suave) !important;
+        }
+        .keyword-group h5 {
+            color: var(--verde-escuro);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--dourado-suave);
+        }
+        .swot-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            background-color: var(--branco); /* Fundo branco para as cards SWOT */
+        }
+        .swot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        .swot-card .card-header {
+            background-color: transparent; /* Remover fundo do header */
+            border-bottom: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding-bottom: 0;
+        }
+        .swot-card .card-body {
+            padding-top: 0.5rem;
+        }
+        .swot-card.strengths .card-header { color: var(--verde-swot); }
+        .swot-card.weaknesses .card-header { color: var(--vermelho-swot); }
+        .swot-card.opportunities .card-header { color: var(--azul-swot); }
+        .swot-card.threats .card-header { color: var(--amarelo-swot); }
+
+        .swot-card .card-header i {
+            margin-right: 0.5rem;
+        }
+        .swot-card.strengths .card-header i { color: var(--verde-swot); }
+        .swot-card.weaknesses .card-header i { color: var(--vermelho-swot); }
+        .swot-card.opportunities .card-header i { color: var(--azul-swot); }
+        .swot-card.threats .card-header i { color: var(--amarelo-swot); }
+
+        .header-logo {
+            max-height: 60px; /* Ajuste o tamanho conforme necessário */
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-verde-escuro text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <img src="Logo BilaCare/Bilacare_FundosEscuros.png" alt="Logo BilaCare" class="header-logo">
+            <h1 class="display-4 mb-0 flex-grow-1 text-center"><i class="fas fa-trophy me-3"></i>Análise Competitiva</h1>
+            <img src="Logo Hendrios/Aplicar fundo preto.png" alt="Logo Hendrios Ace" class="header-logo">
+        </div>
+    </header>
+
+    <main class="container-fluid mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="concorrentesTable" class="table table-striped table-bordered" style="width:100%">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Concorrente</th>
+                                <th>Foco Principal</th>
+                                <th>Pontos Fortes (Desafios para Bilacare)</th>
+                                <th>Pontos Fracos (Oportunidades para Bilacare)</th>
+                                <th>Nível de Ameaça</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Clinica Mota Torres -->
+                            <tr>
+                                <td><strong>Clinica Mota Torres</strong></td>
+                                <td>Harmonização Facial</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Forte prova social com uso intensivo de "antes e depois".</li>
+                                        <li><i class="fas fa-check-circle"></i> Figura de autoridade clara na Dra. Sofia Mota Torres.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Design amador e posicionamento visual inconsistente.</li>
+                                        <li><i class="fas fa-times-circle"></i> Interação limitada e baixo engajamento nas redes sociais.</li>
+                                        <li><i class="fas fa-times-circle"></i> Conteúdo pouco aprofundado (sem blog, guias, etc.).</li>
+                                        <li><i class="fas fa-times-circle"></i> CTAs poderiam ser mais agressivos e persuasivos.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-danger">Alta</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-clinica_mota_torres">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Dra. Sofia Pereira Alves -->
+                            <tr>
+                                <td><strong>Dra. Sofia Pereira Alves</strong></td>
+                                <td>Harmonização Facial (Marca Pessoal)</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Marca pessoal muito sólida que gera confiança.</li>
+                                        <li><i class="fas fa-check-circle"></i> Website moderno e profissional.</li>
+                                        <li><i class="fas fa-check-circle"></i> Bom conteúdo educativo que a posiciona como autoridade.</li>
+                                        <li><i class="fas fa-check-circle"></i> Dupla localização (Porto/Vila Real) amplia o mercado.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Alta dependência da imagem pessoal, o que limita a escalabilidade da marca "clínica".</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-danger">Alta</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-dra_sofia_pereira_alves">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- DALS -->
+                            <tr>
+                                <td><strong>DALS</strong></td>
+                                <td>Medicina Dentária e Estética (Generalista)</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Oferta "one-stop-shop" apela à conveniência.</li>
+                                        <li><i class="fas fa-check-circle"></i> Bom envolvimento com a comunidade local.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Comunicação pouco focada, diluindo a mensagem de estética.</li>
+                                        <li><i class="fas fa-times-circle"></i> Baixa frequência de publicações e presença digital inconsistente.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-warning text-dark">Média</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-dals">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Clínica Catarina Fontes -->
+                            <tr>
+                                <td><strong>Clínica Catarina Fontes</strong></td>
+                                <td>Ortodontia (com Estética secundária)</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Marketing digital muito sofisticado e branding forte.</li>
+                                        <li><i class="fas fa-check-circle"></i> Forte prova social com o selo "Platinum Elite Invisalign".</li>
+                                        <li><i class="fas fa-check-circle"></i> Posicionamento de alta tecnologia e saúde integrada.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Harmonização facial é um serviço secundário e não o foco da comunicação.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-warning text-dark">Média</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-clinica_catarina_fontes">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Clinica Dra Diana Salomé -->
+                            <tr>
+                                <td><strong>Clinica Dra Diana Salomé</strong></td>
+                                <td>Medicina Dentária (Foco em Acessibilidade)</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Apelo forte à acessibilidade financeira (acordos, cheque dentista).</li>
+                                        <li><i class="fas fa-check-circle"></i> Serviços de conveniência como atendimento ao domicílio.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Imagem visual fraca (site básico, sem casos clínicos visuais de estética).</li>
+                                        <li><i class="fas fa-times-circle"></i> Posicionamento não-premium, não compete pelo mesmo público-alvo da Bilacare.</li>
+                                        <li><i class="fas fa-times-circle"></i> Medicina estética muito pouco destacada.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-success">Baixa</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-clinica_dra_diana_salome">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Hospital da Luz -->
+                            <tr>
+                                <td><strong>Hospital da Luz</strong></td>
+                                <td>Medicina Dentária (Institucional)</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Marca extremamente forte e reconhecida que transmite segurança.</li>
+                                        <li><i class="fas fa-check-circle"></i> Infraestrutura completa e marketing institucional robusto.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Impessoalidade e falta de foco no nicho de estética.</li>
+                                        <li><i class="fas fa-times-circle"></i> Não compete pela experiência personalizada que um paciente de estética procura.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-success">Baixa</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-hospital_da_luz">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Cliarcos -->
+                            <tr>
+                                <td><strong>Cliarcos</strong></td>
+                                <td>Serviço Dentário Tradicional</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Autoridade e Confiança (25 anos de história).</li>
+                                        <li><i class="fas fa-check-circle"></i> Equipa grande transmite robustez.</li>
+                                        <li><i class="fas fa-check-circle"></i> Foco em convênios atrai público amplo.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Marketing Digital deficiente.</li>
+                                        <li><i class="fas fa-times-circle"></i> Ausência de Harmonização Facial.</li>
+                                        <li><i class="fas fa-times-circle"></i> Posicionamento tradicional pode não apelar a público jovem.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-success">Baixa</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-cliarcos">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Dentereal -->
+                            <tr>
+                                <td><strong>Dentereal</strong></td>
+                                <td>Odontologia Premium (Implantes, Ortodontia)</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Reputação e Tradição (+30 anos).</li>
+                                        <li><i class="fas fa-check-circle"></i> Selo de Qualidade (BQDC).</li>
+                                        <li><i class="fas fa-check-circle"></i> Posicionamento premium atrai público de maior valor.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Ausência de Harmonização Facial.</li>
+                                        <li><i class="fas fa-times-circle"></i> Marketing de conteúdo ineficiente.</li>
+                                        <li><i class="fas fa-times-circle"></i> Comunicação impessoal.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-warning text-dark">Média</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-dentereal">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Diodental -->
+                            <tr>
+                                <td><strong>Diodental</strong></td>
+                                <td>Clínica Dentária Tradicional/Familiar</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Posicionamento claro e focado na confiança.</li>
+                                        <li><i class="fas fa-check-circle"></i> Cobertura completa de serviços dentários clássicos.</li>
+                                        <li><i class="fas fa-check-circle"></i> Presença local estabelecida.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Ausência de Harmonização Facial.</li>
+                                        <li><i class="fas fa-times-circle"></i> Comunicação digital fraca e site datado.</li>
+                                        <li><i class="fas fa-times-circle"></i> Imagem pouco moderna.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-success">Baixa</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-diodental">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Smile.up -->
+                            <tr>
+                                <td><strong>Smile.up</strong></td>
+                                <td>Rede Corporativa (Acessibilidade e Conveniência)</td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-check-circle"></i> Marca forte e reconhecida a nível nacional.</li>
+                                        <li><i class="fas fa-check-circle"></i> Estratégia de preço agressiva (cartão de saúde).</li>
+                                        <li><i class="fas fa-check-circle"></i> Máquina de marketing centralizada e eficiente.</li>
+                                        <li><i class="fas fa-check-circle"></i> Oferta abrangente, incluindo Harmonização Facial.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><i class="fas fa-times-circle"></i> Impessoalidade e falta de conexão local.</li>
+                                        <li><i class="fas fa-times-circle"></i> Percepção de "low-cost" pode afastar clientes premium.</li>
+                                        <li><i class="fas fa-times-circle"></i> Falta de flexibilidade para campanhas locais.</li>
+                                    </ul>
+                                </td>
+                                <td><span class="badge bg-danger">Alta</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-smileup_chaves">
+                                        <i class="fas fa-search-plus"></i> Detalhes
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal Clinica Mota Torres -->
+    <div class="modal fade" id="modal-clinica_mota_torres" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Análise Aprofundada: Clínica Mota Torres</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Primeiras Impressões e UX do Site</h5>
+                    <p>O site da Clínica Mota Torres (clinicamotatorres.pt) apresenta um design que aparenta ser amador e pouco profissional. Embora a estrutura de navegação seja funcional, a estética geral, a escolha de tipografia e a paleta de cores não transmitem um posicionamento de alto padrão, alinhando-se mais a uma comunicação para a classe média. A experiência do utilizador é prejudicada pela falta de sofisticação e pela ausência de "calls-to-action" (CTAs) claros e eficazes para incentivar o agendamento. Há uma incoerência na comunicação visual, por exemplo, as cores do site são divergentes das utilizadas no Instagram, o que pode causar confusão na identidade da marca.</p>
+                    <h5>Proposta de Valor e Mensagens Chave</h5>
+                    <p>A proposta de valor da clínica está centrada em "Medicina Estética Avançada", com a mensagem principal a focar-se em "realçar a beleza natural com segurança e personalização". A comunicação, tanto no site como nas redes sociais, enfatiza consistentemente a especialização da equipa, liderada pela Dra. Sofia Mota Torres, e a utilização de tecnologias de ponta, posicionando a clínica como uma referência de qualidade e confiança no mercado.</p>
+                    <h5>Oferta de Serviços</h5>
+                    <ul>
+                        <li><strong>Harmonização Facial:</strong> Botox, preenchimentos labiais e faciais, fios tensores.</li>
+                        <li><strong>Tratamentos Corporais:</strong> Bioestimuladores de colagénio, tratamentos para celulite e gordura localizada.</li>
+                        <li><strong>Tecnologias a Laser:</strong> Remoção de tatuagens e rejuvenescimento da pele.</li>
+                        <li><strong>Tratamentos Capilares:</strong> PRP Capilar.</li>
+                    </ul>
+                    <h5>Estratégia de Conteúdo no Instagram (@clinica_motatorres)</h5>
+                    <p>O Instagram é o principal canal de comunicação e marketing da clínica. A estratégia de conteúdo é consistente, focada em resultados (antes e depois), conteúdo educacional, humanização da marca e feedback de clientes. No entanto, o design das publicações é básico e não reforça uma imagem de marca premium.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dra. Sofia Pereira Alves -->
+    <div class="modal fade" id="modal-dra_sofia_pereira_alves" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Dra. Sofia Pereira Alves</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Estratégia e Posicionamento</h5>
+                    <p>A estratégia é fortemente baseada na marca pessoal da médica. Projeta uma imagem de especialista acessível, apaixonada e humana, focada em resultados naturais e na melhoria da autoestima do paciente.</p>
+                    <h5>Canais de Comunicação</h5>
+                    <p>Abordagem Multicanal: Mantém um website profissional e moderno, e presença ativa no Instagram (principal canal de engajamento), Facebook e LinkedIn.</p>
+                    <h5>Pontos Fortes</h5>
+                    <ul>
+                        <li>Marca Pessoal Sólida: A comunicação empática e pessoal gera um elevado nível de confiança.</li>
+                        <li>Website Moderno: O site é profissional e serve como um bom cartão de visita digital.</li>
+                        <li>Conteúdo Educativo: Posiciona-se como uma autoridade no assunto.</li>
+                        <li>Dupla Localização: Atende no Porto e em Vila Real, ampliando o mercado.</li>
+                    </ul>
+                    <h5>Pontos Fracos</h5>
+                    <ul>
+                        <li>Dependência da Imagem Pessoal: A marca está intrinsecamente ligada à Dra. Sofia, o que pode ser um fator limitante para a escalabilidade.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal DALS -->
+    <div class="modal fade" id="modal-dals" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: DALS</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Estratégia e Posicionamento</h5>
+                    <p>Posiciona-se como uma clínica "one-stop-shop", oferecendo uma vasta gama de serviços que vão da saúde oral à estética facial. A estratégia é baseada na conveniência e na oferta abrangente para toda a família.</p>
+                    <h5>Pontos Fortes</h5>
+                    <ul>
+                        <li>Oferta de Serviços Integrada: A capacidade de tratar do sorriso e do rosto no mesmo local é um forte apelo.</li>
+                        <li>Envolvimento Comunitário: A participação em eventos locais ajuda a construir uma marca de proximidade.</li>
+                        <li>Equipa Multidisciplinar: Reforça a imagem de uma clínica completa.</li>
+                    </ul>
+                    <h5>Pontos Fracos</h5>
+                    <ul>
+                        <li>Comunicação Pouco Focada: A área de harmonização facial não recebe o destaque necessário.</li>
+                        <li>Baixa Frequência de Publicações: A presença nas redes sociais não é consistente.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Clínica Catarina Fontes -->
+    <div class="modal fade" id="modal-clinica_catarina_fontes" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Clínica Catarina Fontes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Estratégia e Posicionamento</h5>
+                    <p>Posiciona-se como uma clínica multidisciplinar de alta tecnologia e um centro de saúde integrado. A estratégia é liderar com a sua forte credibilidade em Ortodontia (Invisalign) para alavancar outras áreas.</p>
+                    <h5>Pontos Fortes</h5>
+                    <ul>
+                        <li>Marketing Digital Sofisticado e Branding Forte.</li>
+                        <li>Oferta de Serviços Holística (psicologia, fisioterapia).</li>
+                        <li>Prova Social Forte: Selo "Platinum Elite Invisalign".</li>
+                    </ul>
+                    <h5>Pontos Fracos</h5>
+                    <ul>
+                        <li>Medicina Estética como Serviço Secundário: A comunicação principal está focada na medicina dentária.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Clinica Dra Diana Salomé -->
+    <div class="modal fade" id="modal-clinica_dra_diana_salome" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Clinica Dra Diana Salomé</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Estratégia e Posicionamento</h5>
+                    <p>Posiciona-se como uma clínica de proximidade, focada em construir uma relação de confiança e familiaridade com os pacientes, com foco na acessibilidade e conveniência.</p>
+                    <h5>Pontos Fortes</h5>
+                    <ul>
+                        <li>Acessibilidade Financeira: Vasta gama de acordos e cheque dentista.</li>
+                        <li>Serviços de Conveniência: Atendimento ao domicílio.</li>
+                        <li>Facilidades de Pagamento.</li>
+                    </ul>
+                    <h5>Pontos Fracos</h5>
+                    <ul>
+                        <li>Design do Website básico e comunicação visual fraca.</li>
+                        <li>Medicina Estética Pouco Destacada.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Hospital da Luz -->
+    <div class="modal fade" id="modal-hospital_da_luz" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Hospital da Luz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Estratégia e Posicionamento</h5>
+                    <p>O Hospital da Luz não se posiciona como uma clínica, mas como uma instituição de saúde de grande escala. A sua estratégia é vender segurança, credibilidade e acesso a tecnologia de ponta, alavancando a força da marca-mãe.</p>
+                    <h5>Pontos Fortes</h5>
+                    <ul>
+                        <li>Marca Forte e Reconhecida.</li>
+                        <li>Infraestrutura Completa e ecossistema de saúde.</li>
+                        <li>Marketing Institucional Robusto.</li>
+                    </ul>
+                    <h5>Pontos Fracos (para o nicho de Estética)</h5>
+                    <ul>
+                        <li>Impessoalidade e falta de atendimento próximo.</li>
+                        <li>Falta de Foco em serviços de nicho como a harmonização facial.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cliarcos -->
+    <div class="modal fade" id="modal-cliarcos" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Cliarcos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Primeiras Impressões e UX do Site</h5>
+                    <p>O site tem um layout limpo, mas a estrutura geral é simples e um pouco datada. A imagem principal é de uma clínica familiar, estabelecida e de confiança, com ênfase nos "mais de 25 anos de experiência".</p>
+                    <h5>Proposta de Valor e Mensagens Chave</h5>
+                    <p>A proposta de valor central é a confiança e a experiência. O foco está claramente na especialização e na tradição do serviço dentário.</p>
+                    <h5>Oferta de Serviços</h5>
+                    <p>Os serviços com maior destaque são Aparelho Dentário, Invisalign, Implantes e Facetas. <strong>Não há qualquer menção ao serviço de Harmonização Facial.</strong></p>
+                    <h5>Estratégia de Conteúdo Digital</h5>
+                    <p>A presença no Instagram e Facebook é pouco robusta, com baixo engajamento e conteúdo focado em datas comemorativas e posts institucionais genéricos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dentereal -->
+    <div class="modal fade" id="modal-dentereal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Dentereal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Primeiras Impressões e UX do Site</h5>
+                    <p>O site possui um design limpo, profissional e moderno, transmitindo uma imagem premium e estabelecida, reforçada pelos "mais de 30 anos de experiência" e afiliação ao "Best Quality Dental Centers".</p>
+                    <h5>Proposta de Valor e Mensagens Chave</h5>
+                    <p>A proposta de valor centraliza-se em Tradição, Qualidade e Inovação. A comunicação é sóbria e focada na excelência clínica.</p>
+                    <h5>Oferta de Serviços</h5>
+                    <p>Os tratamentos mais proeminentes são Aparelho Dentário, Invisalign, Implantes e Facetas. <strong>Não há qualquer menção a serviços de Harmonização Facial.</strong></p>
+                    <h5>Estratégia de Conteúdo Digital</h5>
+                    <p>A atividade no Instagram é esporádica e com baixo engajamento. O conteúdo é predominantemente institucional e genérico.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diodental -->
+    <div class="modal fade" id="modal-diodental" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Diodental</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Primeiras Impressões e UX do Site</h5>
+                    <p>O site transmite uma imagem tradicional e um pouco datada, com um posicionamento de clínica de bairro familiar e acessível.</p>
+                    <h5>Proposta de Valor e Mensagens Chave</h5>
+                    <p>A proposta de valor centraliza-se no cuidado personalizado, na confiança e no acompanhamento contínuo.</p>
+                    <h5>Oferta de Serviços</h5>
+                    <p>A clínica destaca uma gama muito abrangente de serviços de medicina dentária tradicional. <strong>Não há qualquer menção a serviços de Harmonização Orofacial (HOF).</strong></p>
+                    <h5>Estratégia de Conteúdo Digital</h5>
+                    <p>A secção de "Notícias" do site está desatualizada. A presença no Facebook é genérica e com baixo engajamento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Smile.up -->
+    <div class="modal fade" id="modal-smileup_chaves" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header card-header">
+                    <h5 class="modal-title">Análise Competitiva: Smile.up (unidade de Chaves)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Primeiras Impressões e UX do Site</h5>
+                    <p>O site pertence a uma grande rede nacional (Smile.up) e a página da clínica de Chaves é uma landing page padronizada, focada em conversão de forma funcional, mas impessoal.</p>
+                    <h5>Proposta de Valor e Mensagens Chave</h5>
+                    <p>A principal mensagem é a oferta de uma gama completa de serviços dentários de forma acessível e conveniente, com um pilar central na estratégia de preço através do "Cartão Total Saúde".</p>
+                    <h5>Oferta de Serviços</h5>
+                    <p>O site lista uma vasta gama de tratamentos. <strong>Sim, oferecem Harmonização Facial</strong> e dão-lhe um destaque considerável na categoria de "Estética".</p>
+                    <h5>Estratégia de Conteúdo Digital</h5>
+                    <p>A estratégia de conteúdo é totalmente centralizada e gerida pela marca-mãe "Smile.up", focada em promoções de âmbito nacional e fortalecimento da imagem da rede.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#concorrentesTable').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.7/i18n/pt-PT.json"
+                }
+            });
+        });
+    </script>
+
+    <footer class="bg-verde-escuro text-white text-center p-3 mt-5">
+        <p class="mb-0">&copy; 2025 - Relatório para Bilacare | Planejamento Estratégico por Hendrios Ace.</p>
+    </footer>
+</body>
+</html>
